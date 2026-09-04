@@ -1,0 +1,64 @@
+<script lang="ts">
+	import { cn } from '$lib/utils';
+	import {
+		TimescaleAge,
+		TimescaleItem,
+		TimescaleRail,
+		TimescaleRoot,
+		TimescaleTick,
+		TimescaleTrack
+	} from '$lib/components/ui/timescale/index.js';
+	import type { Chapter } from '$lib/roadmap';
+
+	let {
+		chapter,
+		index = 0,
+		showHeading = true
+	}: { chapter: Chapter; index?: number; showHeading?: boolean } = $props();
+</script>
+
+<section id={chapter.id} aria-label={chapter.label} class="scroll-mt-24">
+	{#if showHeading}
+		<div class="flex items-baseline gap-3">
+			<h2 class="text-2xl font-semibold tracking-[-0.01em] text-gray-1200">{chapter.label}</h2>
+			<p class="text-sm text-gray-1100">{chapter.hint}</p>
+		</div>
+	{/if}
+
+	<TimescaleRoot orientation="vertical" rail="calc(var(--spacing) * 22)" class="mt-5">
+		<TimescaleTrack>
+			<TimescaleRail class="text-preview-border" />
+			{#each chapter.items as item, ii}
+				<TimescaleItem>
+					<TimescaleTick class={item.live ? 'bg-roadmap-500 shadow-glow' : undefined} />
+					<TimescaleAge class="text-gray-1100 tracking-[0.05em] whitespace-nowrap uppercase">
+						{item.stage}
+					</TimescaleAge>
+					<div
+						class={cn('preview-card text-left animate-rise')}
+						style="animation-delay: {Math.min(index * 120 + ii * 70, 480)}ms"
+					>
+						<div class="w-full p-5">
+							<h3 class="text-lg font-semibold tracking-[-0.01em] text-balance text-gray-1200">
+								{item.title}
+							</h3>
+							<p class="mt-1 text-sm leading-relaxed text-pretty text-text-paragraph">
+								{item.outcome}
+							</p>
+							<div class="mt-3 flex flex-wrap items-center gap-2">
+								{#each item.themes as theme}
+									<span
+										class="rounded-full border border-preview-border px-2.5 py-0.5 text-xs whitespace-nowrap text-gray-1100"
+									>
+										{theme}
+									</span>
+								{/each}
+								<span class="text-xs text-gray-1100">{item.confidence}</span>
+							</div>
+						</div>
+					</div>
+				</TimescaleItem>
+			{/each}
+		</TimescaleTrack>
+	</TimescaleRoot>
+</section>

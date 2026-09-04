@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@theme {
+	--font-inter: 'Inter Variable', system-ui, arial, sans-serif;
+	--font-sans: 'Inter Variable', system-ui, arial, sans-serif;
+	--font-display: 'Inter Variable', system-ui, arial, sans-serif;
+
+	--default-font-family: var(--font-inter);
+	--default-font-feature-settings: 'cv01', 'ss03';
+
+	--color-base: oklch(0.173 0 0);
+
+	/* Exact port of oklch.fyi dark theme (oklch.fyi/_next CSS, .dark block) */
+	--color-gray-background: #101010;
+	--color-gray-100: #111;
+	--color-gray-200: #191919;
+	--color-gray-300: #222;
+	--color-gray-400: #2a2a2a;
+	--color-gray-500: #313131;
+	--color-gray-600: #3a3a3a;
+	--color-gray-700: #484848;
+	--color-gray-800: #606060;
+	--color-gray-900: #6e6e6e;
+	--color-gray-1000: #7b7b7b;
+	--color-gray-1100: #b5b5b5;
+	--color-gray-1200: #eee;
+	--color-preview-bg: #0b0b0b;
+	--color-preview-border: #1f1f1f;
+	--color-text-paragraph: #dbdbdb;
+
+	--color-roadmap-300: oklch(0.78 0.15 265);
+	--color-roadmap-500: oklch(0.65 0.22 265);
+	--color-roadmap-700: oklch(0.52 0.24 265);
+
+	--shadow-card: 0 8px 30px rgb(0 0 0 / 0.08);
+	--shadow-glow: 0 0 40px rgb(99 102 241 / 0.35);
+
+	/* Exact port of oklch.fyi dark shadows (.dark block) */
+	--shadow-custom: 0 0 0 1px #ffffff14;
+	--shadow-custom-hover: 0 0 0 1px #ffffff21;
+	--shadow-border: 0 0 0 1px #ffffff14;
+	--shadow-focus: 0 0 0 3px #ffffff1a;
+
+	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	--animate-rise: rise 0.6s ease-out both;
+	--animate-fade: fade 0.4s ease-out both;
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+	@keyframes fade {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}
+
+@layer base {
+	html {
+		font-family: var(--default-font-family, var(--font-sans));
+		font-feature-settings: var(--default-font-feature-settings);
+		font-optical-sizing: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		color-scheme: dark;
+		background: var(--color-gray-background);
+	}
+
+	body {
+		background: var(--color-gray-background);
+		color: var(--color-gray-1200);
+	}
+}
+
+@layer components {
+	/* Exact port of oklch.fyi .preview-card */
+	.preview-card {
+		background-color: var(--color-preview-bg);
+		width: 100%;
+		box-shadow: var(--shadow-custom);
+		border-radius: 0.75rem;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		overflow: hidden;
+	}
+	.glass {
+		background: color-mix(in oklch, white 10%, transparent);
+		backdrop-filter: blur(16px);
+		border: 1px solid color-mix(in oklch, white 20%, transparent);
+	}
+}
+
+/* Timescale (ncdai port) supporting utilities */
+@utility no-scrollbar {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+@utility scroll-fade-x {
+	--scroll-fade-size: calc(var(--spacing) * 10);
+	mask-image: linear-gradient(
+		to right,
+		transparent,
+		black var(--scroll-fade-size),
+		black calc(100% - var(--scroll-fade-size)),
+		transparent
+	);
+}
+
+@utility scroll-fade-s-40 {
+	--scroll-fade-size: calc(var(--spacing) * 10);
+}
+
+/* Timescale header labels: uppercase + restrained tracking (not tracking-widest) */
+[data-slot='timescale-header'] :is([data-slot='timescale-age'], [data-slot='timescale-year']) {
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* Scroll-driven spine fill — progressive enhancement */
+@supports (animation-timeline: view()) {
+	.spine-fill {
+		animation: spine-fill linear both;
+		animation-timeline: view();
+	}
+	@keyframes spine-fill {
+		from {
+			transform: scaleY(0);
+		}
+		to {
+			transform: scaleY(1);
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
