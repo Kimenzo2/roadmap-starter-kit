@@ -1,0 +1,36 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "productclient-roadmap",
+	"account_id": "17c310890f1b07850d4ff05a3c1e3813",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2026-09-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": true,
+	"routes": [
+		{
+			"pattern": "roadmap.productclient.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "roadmap.productclient.com/*",
+			"zone_name": "productclient.com"
+		}
+	],
+	"observability": {
+		"enabled": true
+	},
+	"assets": {
+		"directory": ".svelte-kit/cloudflare",
+		"binding": "ASSETS"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "productclient-tenants",
+			"database_id": "a458ba74-60cf-4cec-a37b-0cf110497c1a"
+		}
+	],
+	"vars": {
+		"PUBLIC_ROADMAP_TENANT_DOMAIN": "roadmap.productclient.com"
+	}
+}
