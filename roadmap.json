@@ -55,6 +55,7 @@
 					"outcome": "Ship updates in one click, no waiting on builds.",
 					"themes": ["Deploy"],
 					"confidence": "high",
+					"updatedAt": "2026-09-03T10:00:00Z",
 					"live": true
 				},
 				{
@@ -63,6 +64,7 @@
 					"outcome": "See what each tenant uses at a glance.",
 					"themes": ["Dashboard"],
 					"confidence": "high",
+					"updatedAt": "2026-09-01T10:00:00Z",
 					"live": true
 				}
 			]
@@ -77,14 +79,16 @@
 					"title": "Custom domains",
 					"outcome": "Point your own domain at any tenant.",
 					"themes": ["Domains"],
-					"confidence": "medium"
+					"confidence": "medium",
+					"updatedAt": "2026-08-27T10:00:00Z"
 				},
 				{
 					"stage": "planned",
 					"title": "Team invites",
 					"outcome": "Bring teammates in with roles that make sense.",
 					"themes": ["Teams"],
-					"confidence": "medium"
+					"confidence": "medium",
+					"updatedAt": "2026-08-24T10:00:00Z"
 				}
 			]
 		},
@@ -98,14 +102,16 @@
 					"title": "Usage limits",
 					"outcome": "Set fair caps per tenant before overages surprise you.",
 					"themes": ["Limits"],
-					"confidence": "directional"
+					"confidence": "directional",
+					"updatedAt": "2026-08-18T10:00:00Z"
 				},
 				{
 					"stage": "exploring",
 					"title": "Audit log",
 					"outcome": "See who changed what, when.",
 					"themes": ["Security"],
-					"confidence": "directional"
+					"confidence": "directional",
+					"updatedAt": "2026-08-12T10:00:00Z"
 				}
 			]
 		}

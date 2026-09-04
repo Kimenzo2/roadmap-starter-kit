@@ -58,6 +58,7 @@ export const RoadmapSchema = z
 								outcome: z.string().min(1),
 								themes: z.array(z.string().min(1)).min(1),
 								confidence: z.string().min(1),
+								updatedAt: z.string().datetime({ offset: true }),
 								live: z.boolean().optional()
 							})
 						)

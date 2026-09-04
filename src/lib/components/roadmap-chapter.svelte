@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
+	import RelativeTime from '$lib/components/relative-time.svelte';
 	import {
 		TimescaleAge,
 		TimescaleItem,
@@ -44,8 +45,12 @@
 					<TimescaleAge class="text-gray-1100 tracking-[0.05em] whitespace-nowrap uppercase">
 						{stageLabel(item.stage)}
 					</TimescaleAge>
+					<RelativeTime
+						datetime={item.updatedAt}
+						class="col-start-2 row-start-1 mb-2 justify-self-end text-xs whitespace-nowrap tabular-nums text-gray-1100"
+					/>
 					<div
-						class={cn('preview-card text-left animate-rise')}
+						class={cn('preview-card col-start-2 row-start-2 text-left animate-rise')}
 						style="animation-delay: {staggerDelay(index, ii)}ms"
 					>
 						<div class="w-full p-5">
