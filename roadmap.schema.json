@@ -1,0 +1,194 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "./roadmap.schema.json",
+	"title": "Roadmap Starter Kit config",
+	"description": "Single source of truth for the Roadmap Starter Kit. Mirrors src/lib/config/schema.ts (zod) — keep them in sync.",
+	"type": "object",
+	"required": ["site", "seo", "navigation", "copy", "stages", "confidence", "chapters", "theme", "footer", "tenant"],
+	"properties": {
+		"$schema": { "type": "string" },
+		"site": {
+			"type": "object",
+			"required": ["name", "tagline", "description", "url", "locale", "logo", "icon", "favicon"],
+			"properties": {
+				"name": { "type": "string", "minLength": 1, "maxLength": 80 },
+				"tagline": { "type": "string", "minLength": 1 },
+				"description": { "type": "string", "minLength": 1 },
+				"url": { "type": "string", "format": "uri" },
+				"locale": { "type": "string", "minLength": 1, "examples": ["en-US"] },
+				"logo": {
+					"type": "object",
+					"required": ["src", "alt"],
+					"properties": {
+						"src": { "type": "string", "minLength": 1 },
+						"alt": { "type": "string", "minLength": 1 }
+					}
+				},
+				"icon": { "type": "string", "minLength": 1 },
+				"favicon": { "type": "string", "minLength": 1 }
+			}
+		},
+		"seo": {
+			"type": "object",
+			"required": ["titleTemplate", "defaultTitle", "description", "themeColor", "ogImage"],
+			"properties": {
+				"titleTemplate": { "type": "string", "description": "Must contain {title} and {site}" },
+				"defaultTitle": { "type": "string", "minLength": 1 },
+				"description": { "type": "string", "minLength": 1 },
+				"themeColor": { "type": "string", "minLength": 1 },
+				"ogImage": { "type": "string", "minLength": 1 }
+			}
+		},
+		"navigation": {
+			"type": "object",
+			"required": ["ariaLabel", "allLabel", "showCounts", "countSeparator"],
+			"properties": {
+				"ariaLabel": { "type": "string", "minLength": 1 },
+				"allLabel": { "type": "string", "minLength": 1 },
+				"showCounts": { "type": "boolean" },
+				"countSeparator": { "type": "string", "minLength": 1 }
+			}
+		},
+		"copy": {
+			"type": "object",
+			"required": ["heroSubtitle", "chapterSuffix", "skipLink", "emptyChapterTitle", "emptyChapterSummary"],
+			"properties": {
+				"heroSubtitle": { "type": "string", "minLength": 1 },
+				"chapterSuffix": { "type": "string", "minLength": 1 },
+				"skipLink": { "type": "string", "minLength": 1 },
+				"emptyChapterTitle": { "type": "string", "minLength": 1 },
+				"emptyChapterSummary": { "type": "string", "minLength": 1 }
+			}
+		},
+		"stages": {
+			"type": "object",
+			"description": "Stage vocabulary. Items reference keys, labels render.",
+			"additionalProperties": {
+				"type": "object",
+				"required": ["label"],
+				"properties": { "label": { "type": "string", "minLength": 1 } }
+			}
+		},
+		"confidence": {
+			"type": "object",
+			"description": "Confidence vocabulary. Items reference keys, labels render.",
+			"additionalProperties": {
+				"type": "object",
+				"required": ["label"],
+				"properties": { "label": { "type": "string", "minLength": 1 } }
+			}
+		},
+		"chapters": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"required": ["id", "label", "hint", "items"],
+				"properties": {
+					"id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Kebab-case slug. Also the URL: /{id}" },
+					"label": { "type": "string", "minLength": 1 },
+					"hint": { "type": "string", "minLength": 1 },
+					"items": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"type": "object",
+							"required": ["stage", "title", "outcome", "themes", "confidence"],
+							"properties": {
+								"stage": { "type": "string", "description": "Key into stages" },
+								"title": { "type": "string", "minLength": 1 },
+								"outcome": { "type": "string", "minLength": 1 },
+								"themes": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+								"confidence": { "type": "string", "description": "Key into confidence" },
+								"live": { "type": "boolean" }
+							}
+						}
+					}
+				}
+			}
+		},
+		"theme": {
+			"type": "object",
+			"required": ["fonts", "accent", "glow", "timeline", "motion"],
+			"properties": {
+				"fonts": {
+					"type": "object",
+					"required": ["sans", "display"],
+					"properties": {
+						"sans": { "type": "string", "minLength": 1 },
+						"display": { "type": "string", "minLength": 1 }
+					}
+				},
+				"accent": {
+					"type": "object",
+					"required": ["hue", "colors"],
+					"properties": {
+						"hue": { "type": "number" },
+						"colors": {
+							"type": "object",
+							"required": ["300", "500", "700"],
+							"properties": {
+								"300": { "type": "string", "minLength": 1 },
+								"500": { "type": "string", "minLength": 1 },
+								"700": { "type": "string", "minLength": 1 }
+							}
+						}
+					}
+				},
+				"glow": { "type": "string", "minLength": 1 },
+				"timeline": {
+					"type": "object",
+					"required": ["orientation", "rail", "liveGlow"],
+					"properties": {
+						"orientation": { "enum": ["horizontal", "vertical"] },
+						"rail": { "type": "string", "minLength": 1 },
+						"liveGlow": { "type": "boolean" }
+					}
+				},
+				"motion": {
+					"type": "object",
+					"required": ["rise", "fade", "stagger"],
+					"properties": {
+						"rise": { "type": "string", "minLength": 1 },
+						"fade": { "type": "string", "minLength": 1 },
+						"stagger": {
+							"type": "object",
+							"required": ["perChapter", "perItem", "max"],
+							"properties": {
+								"perChapter": { "type": "number", "minimum": 0 },
+								"perItem": { "type": "number", "minimum": 0 },
+								"max": { "type": "number", "minimum": 0 }
+							}
+						}
+					}
+				}
+			}
+		},
+		"footer": {
+			"type": "object",
+			"required": ["description", "links", "bottomTemplate"],
+			"properties": {
+				"description": { "type": "string", "minLength": 1 },
+				"links": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": ["label", "href"],
+						"properties": {
+							"label": { "type": "string", "minLength": 1 },
+							"href": { "type": "string", "minLength": 1 }
+						}
+					}
+				},
+				"bottomTemplate": { "type": "string", "description": "Supports {site} and {year}" }
+			}
+		},
+		"tenant": {
+			"type": "object",
+			"required": ["domain"],
+			"properties": {
+				"domain": { "type": "string", "minLength": 1, "description": "Reserved seam for future hostname tenant resolution" }
+			}
+		}
+	}
+}

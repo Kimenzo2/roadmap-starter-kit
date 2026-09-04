@@ -1,15 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { chapters } from '$lib/roadmap';
+	import { navLinks, roadmapSite } from '$lib/config/roadmap';
 
-	const links = [
-		{ href: '/', label: 'All' },
-		...chapters.map((c) => ({ href: `/${c.id}`, label: `${c.label} · ${c.items.length}` }))
-	];
+	const links = navLinks();
 </script>
 
 <nav
-	aria-label="Roadmap chapters"
+	aria-label={roadmapSite.navigation.ariaLabel}
 	class="sticky top-4 z-20 mt-8 flex gap-2 rounded-2xl border border-preview-border bg-gray-background/80 p-2 backdrop-blur-xl animate-fade"
 >
 	{#each links as link}

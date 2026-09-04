@@ -7,11 +7,12 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
+		"check:roadmap": "bun scripts/check-roadmap.ts",
 		"cf:dev": "bun run build && wrangler dev",
 		"cf:deploy": "bun run build && wrangler deploy",
 		"cf:types": "wrangler types",
 		"prepare": "svelte-kit sync || echo ''",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check": "bun run check:roadmap && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
@@ -31,6 +32,7 @@
 		"bits-ui": "^2.19.0",
 		"clsx": "^2.1.1",
 		"tailwind-merge": "^3.6.0",
-		"tailwind-variants": "^3.3.1"
+		"tailwind-variants": "^3.3.1",
+		"zod": "^4.5.4"
 	}
 }

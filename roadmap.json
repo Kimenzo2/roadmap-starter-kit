@@ -1,0 +1,144 @@
+{
+	"$schema": "./roadmap.schema.json",
+	"site": {
+		"name": "ProductClient",
+		"tagline": "Where the platform is heading.",
+		"description": "ProductClient's public roadmap. Current thinking, not promises.",
+		"url": "https://roadmap.productclient.com",
+		"locale": "en-US",
+		"logo": { "src": "/brand-icon.svg", "alt": "ProductClient app icon" },
+		"icon": "/brand-icon.svg",
+		"favicon": "/favicon.svg"
+	},
+	"seo": {
+		"titleTemplate": "{title} · {site} Roadmap",
+		"defaultTitle": "ProductClient Roadmap",
+		"description": "Where the platform is heading. Current thinking, not promises.",
+		"themeColor": "#101010",
+		"ogImage": "/og-roadmap.png"
+	},
+	"navigation": {
+		"ariaLabel": "Roadmap chapters",
+		"allLabel": "All",
+		"showCounts": true,
+		"countSeparator": "·"
+	},
+	"copy": {
+		"heroSubtitle": "Where the platform is heading. Current thinking, not promises — things move.",
+		"chapterSuffix": "Current thinking, not promises — things move.",
+		"skipLink": "Skip to content",
+		"emptyChapterTitle": "Nothing here yet",
+		"emptyChapterSummary": "Items will appear in this horizon once they are planned."
+	},
+	"stages": {
+		"building": { "label": "Building" },
+		"testing": { "label": "Testing" },
+		"designed": { "label": "Designed" },
+		"planned": { "label": "Planned" },
+		"idea": { "label": "Idea" },
+		"exploring": { "label": "Exploring" }
+	},
+	"confidence": {
+		"high": { "label": "High — in active build" },
+		"medium": { "label": "Medium — planned, order may shift" },
+		"directional": { "label": "Directional — an idea we like" }
+	},
+	"chapters": [
+		{
+			"id": "now",
+			"label": "Now",
+			"hint": "In active build",
+			"items": [
+				{
+					"stage": "building",
+					"title": "Faster deploys",
+					"outcome": "Ship updates in one click, no waiting on builds.",
+					"themes": ["Deploy"],
+					"confidence": "high",
+					"live": true
+				},
+				{
+					"stage": "testing",
+					"title": "Usage overview",
+					"outcome": "See what each tenant uses at a glance.",
+					"themes": ["Dashboard"],
+					"confidence": "high",
+					"live": true
+				}
+			]
+		},
+		{
+			"id": "next",
+			"label": "Next",
+			"hint": "Planned, order may shift",
+			"items": [
+				{
+					"stage": "designed",
+					"title": "Custom domains",
+					"outcome": "Point your own domain at any tenant.",
+					"themes": ["Domains"],
+					"confidence": "medium"
+				},
+				{
+					"stage": "planned",
+					"title": "Team invites",
+					"outcome": "Bring teammates in with roles that make sense.",
+					"themes": ["Teams"],
+					"confidence": "medium"
+				}
+			]
+		},
+		{
+			"id": "later",
+			"label": "Later",
+			"hint": "Directions we like, not committed",
+			"items": [
+				{
+					"stage": "idea",
+					"title": "Usage limits",
+					"outcome": "Set fair caps per tenant before overages surprise you.",
+					"themes": ["Limits"],
+					"confidence": "directional"
+				},
+				{
+					"stage": "exploring",
+					"title": "Audit log",
+					"outcome": "See who changed what, when.",
+					"themes": ["Security"],
+					"confidence": "directional"
+				}
+			]
+		}
+	],
+	"theme": {
+		"fonts": {
+			"sans": "'Inter Variable', system-ui, arial, sans-serif",
+			"display": "'Inter Variable', system-ui, arial, sans-serif"
+		},
+		"accent": {
+			"hue": 265,
+			"colors": {
+				"300": "oklch(0.78 0.15 265)",
+				"500": "oklch(0.65 0.22 265)",
+				"700": "oklch(0.52 0.24 265)"
+			}
+		},
+		"glow": "0 0 40px rgb(99 102 241 / 0.35)",
+		"timeline": {
+			"orientation": "vertical",
+			"rail": "calc(var(--spacing) * 22)",
+			"liveGlow": true
+		},
+		"motion": {
+			"rise": "0.6s ease-out",
+			"fade": "0.4s ease-out",
+			"stagger": { "perChapter": 120, "perItem": 70, "max": 480 }
+		}
+	},
+	"footer": {
+		"description": "A public roadmap for {site}.",
+		"links": [{ "label": "All", "href": "/" }],
+		"bottomTemplate": "© {year} {site}."
+	},
+	"tenant": { "domain": "roadmap.productclient.com" }
+}

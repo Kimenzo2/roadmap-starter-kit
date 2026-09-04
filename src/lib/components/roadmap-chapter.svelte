@@ -8,13 +8,21 @@
 		TimescaleTick,
 		TimescaleTrack
 	} from '$lib/components/ui/timescale/index.js';
-	import type { Chapter } from '$lib/roadmap';
+	import {
+		confidenceLabel,
+		roadmapSite,
+		stageLabel,
+		staggerDelay,
+		type Chapter
+	} from '$lib/config/roadmap';
 
 	let {
 		chapter,
 		index = 0,
 		showHeading = true
 	}: { chapter: Chapter; index?: number; showHeading?: boolean } = $props();
+
+	const timeline = roadmapSite.theme.timeline;
 </script>
 
 <section id={chapter.id} aria-label={chapter.label} class="scroll-mt-24">
@@ -25,18 +33,20 @@
 		</div>
 	{/if}
 
-	<TimescaleRoot orientation="vertical" rail="calc(var(--spacing) * 22)" class="mt-5">
+	<TimescaleRoot orientation={timeline.orientation} rail={timeline.rail} class="mt-5">
 		<TimescaleTrack>
 			<TimescaleRail class="text-preview-border" />
 			{#each chapter.items as item, ii}
 				<TimescaleItem>
-					<TimescaleTick class={item.live ? 'bg-roadmap-500 shadow-glow' : undefined} />
+					<TimescaleTick
+						class={item.live && timeline.liveGlow ? 'bg-roadmap-500 shadow-glow' : undefined}
+					/>
 					<TimescaleAge class="text-gray-1100 tracking-[0.05em] whitespace-nowrap uppercase">
-						{item.stage}
+						{stageLabel(item.stage)}
 					</TimescaleAge>
 					<div
 						class={cn('preview-card text-left animate-rise')}
-						style="animation-delay: {Math.min(index * 120 + ii * 70, 480)}ms"
+						style="animation-delay: {staggerDelay(index, ii)}ms"
 					>
 						<div class="w-full p-5">
 							<h3 class="text-lg font-semibold tracking-[-0.01em] text-balance text-gray-1200">
@@ -53,7 +63,7 @@
 										{theme}
 									</span>
 								{/each}
-								<span class="text-xs text-gray-1100">{item.confidence}</span>
+								<span class="text-xs text-gray-1100">{confidenceLabel(item.confidence)}</span>
 							</div>
 						</div>
 					</div>
