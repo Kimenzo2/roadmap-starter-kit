@@ -2,7 +2,7 @@
 	import { roadmapSite } from '$lib/config/roadmap';
 	import { absoluteDate, relativeTime } from '$lib/time';
 
-	let { datetime, class: className }: { datetime: string; class?: string } = $props();
+	let { datetime, class: className, style }: { datetime: string; class?: string; style?: string } = $props();
 
 	const locale = roadmapSite.site.locale;
 
@@ -14,6 +14,6 @@
 	});
 </script>
 
-<time datetime={datetime} title={absoluteDate(datetime, locale)} class={className}>
-	{text ?? absoluteDate(datetime, locale)}
+<time datetime={datetime} title={absoluteDate(datetime, locale)} class={className} {style}>
+	<span class="sr-only">Updated&nbsp;</span>{text ?? absoluteDate(datetime, locale)}
 </time>

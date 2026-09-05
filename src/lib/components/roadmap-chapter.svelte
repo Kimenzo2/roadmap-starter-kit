@@ -47,7 +47,8 @@
 					</TimescaleAge>
 					<RelativeTime
 						datetime={item.updatedAt}
-						class="col-start-2 row-start-1 mb-2 justify-self-end text-xs whitespace-nowrap tabular-nums text-gray-1100"
+						class="col-start-2 row-start-1 mb-2 max-w-full justify-self-end text-right text-xs tabular-nums text-gray-1100 animate-rise"
+						style="animation-delay: {staggerDelay(index, ii)}ms"
 					/>
 					<div
 						class={cn('preview-card col-start-2 row-start-2 text-left animate-rise')}
