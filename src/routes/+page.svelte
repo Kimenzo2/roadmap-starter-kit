@@ -2,8 +2,12 @@
 	import RoadmapChapter from '$lib/components/roadmap-chapter.svelte';
 	import RoadmapNav from '$lib/components/roadmap-nav.svelte';
 	import { roadmapSite } from '$lib/config/roadmap';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 
 	const site = roadmapSite.site;
+	const brandName = $derived(data.tenant?.record?.displayName ?? site.name);
 </script>
 
 <svelte:head>
@@ -16,20 +20,18 @@
 </svelte:head>
 
 <main id="main-content" class="mx-auto max-w-2xl px-6 py-16">
-	<div class="mt-4 flex items-center gap-4 animate-rise sm:gap-5">
+	<h1
+		class="mt-4 flex items-center gap-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-balance text-gray-1200 animate-rise sm:gap-5"
+	>
 		<img
 			src={site.logo.src}
-			alt={site.logo.alt}
+			alt=""
 			width="64"
 			height="64"
-			class="size-[clamp(2.75rem,7vw,4rem)] shrink-0 rounded-[22%] shadow-border"
+			class="h-[0.95em] w-auto shrink-0 rounded-[22%] shadow-border"
 		/>
-		<h1
-			class="text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-balance text-gray-1200"
-		>
-			{site.name}
-		</h1>
-	</div>
+		<span>{brandName}</span>
+	</h1>
 	<p class="mt-4 text-base leading-relaxed text-pretty text-text-paragraph animate-rise">
 		{roadmapSite.copy.heroSubtitle}
 	</p>

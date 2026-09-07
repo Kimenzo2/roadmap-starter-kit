@@ -118,8 +118,8 @@
 	],
 	"theme": {
 		"fonts": {
-			"sans": "'Inter Variable', system-ui, arial, sans-serif",
-			"display": "'Inter Variable', system-ui, arial, sans-serif"
+			"sans": "'Inter', system-ui, arial, sans-serif",
+			"display": "'Inter', system-ui, arial, sans-serif"
 		},
 		"accent": {
 			"hue": 265,

@@ -3,13 +3,17 @@
 	import RoadmapFooter from '$lib/components/roadmap-footer.svelte';
 	import { getRoadmapThemeStyle, roadmapSite } from '$lib/config/roadmap';
 
-	let { children } = $props();
+	let { data, children } = $props();
+
+	// Tenant hosts brand the shared roadmap with the tenant's display name;
+	// the neutral roadmap.productclient.com host keeps the ProductClient name.
+	const siteName = $derived(data.tenant?.record?.displayName ?? roadmapSite.site.name);
 </script>
 
 <svelte:head>
 	<link rel="icon" href={roadmapSite.site.favicon} />
 	<meta name="theme-color" content={roadmapSite.seo.themeColor} />
-	<meta property="og:site_name" content={roadmapSite.site.name} />
+	<meta property="og:site_name" content={siteName} />
 </svelte:head>
 
 <a

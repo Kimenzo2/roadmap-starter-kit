@@ -14,6 +14,10 @@
 		{
 			"pattern": "roadmap.productclient.com/*",
 			"zone_name": "productclient.com"
+		},
+		{
+			"pattern": "*.roadmap.productclient.com/*",
+			"zone_name": "productclient.com"
 		}
 	],
 	"observability": {
@@ -27,7 +31,8 @@
 		{
 			"binding": "DB",
 			"database_name": "productclient-tenants",
-			"database_id": "a458ba74-60cf-4cec-a37b-0cf110497c1a"
+			"database_id": "a458ba74-60cf-4cec-a37b-0cf110497c1a",
+			"migrations_dir": "migrations"
 		}
 	],
 	"vars": {

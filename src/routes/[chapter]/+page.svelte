@@ -7,6 +7,7 @@
 	let { data }: { data: PageData } = $props();
 
 	const title = $derived(pageTitle(data.chapter.label));
+	const brandName = $derived(data.tenant?.record?.displayName ?? roadmapSite.site.name);
 </script>
 
 <svelte:head>
@@ -28,7 +29,7 @@
 			class="size-8 shrink-0 rounded-[22%] shadow-border"
 		/>
 		<p class="text-sm font-medium tracking-[0.05em] text-gray-1100 uppercase">
-			{roadmapSite.site.name} · Roadmap
+			{brandName} · Roadmap
 		</p>
 	</div>
 	<h1
