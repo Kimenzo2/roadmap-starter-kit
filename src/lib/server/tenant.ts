@@ -18,6 +18,12 @@ export type TenantContext = {
 	isRootDomain: boolean;
 	isTenantSubdomain: boolean;
 	record?: TenantRecord;
+	/**
+	 * Set only for path-based tenants (roadmap.productclient.com/faith/...):
+	 * the URL prefix that internal links must keep so navigation stays inside
+	 * the tenant. Hostname-based tenants render at the root and omit this.
+	 */
+	basePath?: string;
 };
 
 export type TenantDatabase = {
